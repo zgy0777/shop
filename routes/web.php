@@ -15,4 +15,15 @@ Route::get('/','PagesController@root')->name('root');
 
 Auth::routes();
 
+//邮箱验证中间件
+Route::group(['middleware' => 'auth'],function(){
 
+    Route::get('/email_verify_notice','PagesController@emailVerifyNotice')->name('email_verify_notice');
+
+    //测试中间件
+    Route::group(['middleware' => 'email_verified'],function(){
+        Route::get('/test',function(){
+            return 'success';
+        });
+    });
+});
