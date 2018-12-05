@@ -26,8 +26,7 @@ Route::group(['middleware' => 'auth'],function(){
 
     //测试中间件
     Route::group(['middleware' => 'email_verified'],function(){
-        Route::get('/test',function(){
-            return 'success';
-        });
+        //用户地址
+        Route::get('/user_addresses','UserAddressController@index')->name('user_addresses.index');
     });
 });
