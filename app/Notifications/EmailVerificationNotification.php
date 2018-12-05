@@ -40,6 +40,7 @@ class EmailVerificationNotification extends Notification
      * @param  mixed  $notifiable
      * @return \Illuminate\Notifications\Messages\MailMessage
      */
+    //发送邮件时会调用此方法来构建邮件内容，参数就是 App\Models\User 对象
     public function toMail($notifiable)
     {
         //生成随机str_random;
