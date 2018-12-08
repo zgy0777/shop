@@ -28,4 +28,12 @@ class User extends Authenticatable
         return $this->hasMany(UserAddress::class);
     }
 
+    //与商品表建立一对多关系，user_favorite_products是中间表名
+    public function favoriteProducts()
+    {
+        return $this->belongsToMany(Product::class,'user_favorite_products')
+            ->withTimestamps()
+            ->orderBy('user_favorite_products.created_at','desc');
+    }
+
 }
