@@ -1,4 +1,6 @@
 <?php
+use App\Admin\Extensions\WangEditor;
+use Encore\Admin\Form;
 
 /**
  * Laravel-admin - admin builder based on Laravel.
@@ -17,5 +19,5 @@
  * Admin::js('/packages/prettydocs/js/main.js');
  *
  */
-
-Encore\Admin\Form::forget(['map', 'editor']);
+Form::extend('editor', WangEditor::class);
+Encore\Admin\Form::forget(['map']);

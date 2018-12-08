@@ -11,7 +11,9 @@
 |
 */
 
-Route::get('/','PagesController@root')->name('root');
+//Route::get('/','PagesController@root')->name('root');
+Route::redirect('/', '/products')->name('root');
+Route::get('/products','ProductsController@index')->name('products.index');
 
 Auth::routes();
 
@@ -23,6 +25,8 @@ Route::group(['middleware' => 'auth'],function(){
     Route::get('/email_verification/verify','EmailVerificationController@verify')->name('email_verification.verify');
     //用户主动发送邮件
     Route::get('/email_verification/send','EmailVerificationController@send')->name('email_verification.send');
+
+
 
     //测试中间件
     Route::group(['middleware' => 'email_verified'],function(){
