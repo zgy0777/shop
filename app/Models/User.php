@@ -36,4 +36,11 @@ class User extends Authenticatable
             ->orderBy('user_favorite_products.created_at','desc');
     }
 
+    //用户表与购物车表建立一对多关系
+    public function cartItems()
+    {
+        return $this->hasMany(CartItem::class);
+    }
+
+
 }
