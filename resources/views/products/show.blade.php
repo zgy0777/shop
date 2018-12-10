@@ -109,7 +109,10 @@
                     amount : $('.cart_amount input').val(),
                 })
                     .then(function(){ //请求执行成功的回调
-                        swal('加入购物车成功','','success');
+                        swal('加入购物车成功','','success')
+                            .then(function(){
+                                location.href = '{{ route('cart.index') }}';
+                            })
                     },function(error){//执行失败的回调
                         if(error.response.status === 401){
                             //http状态吗为401代表用户未登陆
