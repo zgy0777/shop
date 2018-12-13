@@ -18,9 +18,9 @@ class OrderPolicy
     }
 
     //只有当前用户才可以编辑订单
-    public function own(User $user,Order $order)
+    public function own(User $user, Order $order)
     {
-        return $order->id == $user->id;
+        return $order->user_id == $user->id;
     }
 
 
