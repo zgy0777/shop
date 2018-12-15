@@ -52,7 +52,7 @@ class PaymentController extends Controller
         if(!in_array($data->trade_status,['TRADE_SUCCESS','TRADE_FINISHED'])){
             return app('alipay')->success();
         }
-        
+
         //$data->out_trade_no 拿到订单流水号，并在数据库中查找
         $order = Order::where('no',$data->out_trade_no)->first();
         //正常来说吧u太可能出现支付一笔不存在到订单，此判断为系统健壮性
@@ -71,9 +71,17 @@ class PaymentController extends Controller
             'payment_no' => $data->trade_no,
         ]);
 
+        $this->afterPaid($order);
+
         return app('alipay')->success();
 
     }
+
+    public function afterPaid(Order $order)
+    {
+        event(new OrderPaid($order));
+    }
+
 
 
 }
